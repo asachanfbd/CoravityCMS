@@ -1,0 +1,255 @@
+body{
+  font-size: 10.5px;
+  color: #666;
+  font-family: arial;
+  overflow-y: scroll;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+p{
+    padding: 5px;
+    margin: 0px;
+    font-size: 11px;
+}
+#maincontainer{
+    width: 1000px;
+    overflow: auto;
+    margin:0 auto;
+}
+header{
+    overflow: auto;
+}
+.sidebar{
+    width:250px;
+}
+.sidebar>div, .mainbar>div{
+    padding: 5px;
+    overflow: hidden;
+}
+.mainbar{
+    width:500px;
+}
+.right{
+    float:right;
+}
+.left{
+    float:left;
+}
+ul.nav{
+    padding: 0;
+    margin:2px;
+}
+ul.horizontal li{
+    float: left;
+    border-left: 1px dotted #666;
+}
+ul.nav li{
+    list-style-type: none;
+}
+ul.vertical li{
+    padding: 5px 0;
+}
+ul.horizontal li:first-child{
+    border-left: none;
+}
+ul.nav li a{
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+ul.horizontal li a{
+    padding: 0 5px;
+    font-weight: bold;
+    font-size: 9px;
+}
+ul.nav li a:hover{
+    text-decoration: underline;
+}
+.searchbox input[type=text]{
+    border:1px solid #fff;
+    width: 120px;
+    height: 20px;
+}
+.searchbox input[type=submit]{
+    border:1px solid #888;
+    background: #888;
+    color: #fff;
+    width:  50px;
+    cursor: pointer;
+}
+#searchdiv{
+    background: #888;
+    border: 1px solid #666;
+}
+nav{
+    float: left;
+    clear: both;
+    width: 100%;
+}
+ul.mainnavigation{
+    margin: 0px;
+    padding: 0px;
+}
+ul.mainnavigation li{
+    list-style-type: none;
+}
+ul.mainnavigation li a{
+    text-decoration: none;
+    display: block;
+    padding: 3px;
+    text-transform: uppercase;
+    color: inherit;
+    font-size: 11px;
+}
+ul.mainnavigation li a:hover{
+    color: #f60;
+}
+ul.mainnavigation li a.selected{
+    color: #f60;
+    font-weight: bold;
+}
+h3{
+    color: #EF9C00;
+    font-family: Arial;
+    font-size: 12.5px;
+    font-weight: normal;
+    margin: 0;
+    padding: 5px;
+    text-align: left;
+    text-transform: uppercase;
+}
+#helpmenu{
+    margin-top: 30px;
+    float: left;
+    width: 100%;
+}
+ul#leftsubnav{
+    margin: 0px;
+    padding: 0px;
+    padding-left: 20px;
+}
+ul#leftsubnav li{
+    padding: 2px 0;
+    list-style-image: url('../images/list-img.png');
+}
+ul#leftsubnav li a{
+    text-decoration: none;
+    font-size: 12px;
+    color: inherit;
+}
+ul#leftsubnav li a:hover{
+    text-decoration: underline;
+}
+footer{
+    border-top: 1px solid #ddd;
+    padding: 5px 0;
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 10px;
+}
+#logindiv{
+    border: 1px solid #bbb;
+    box-shadow: 0 0 3px #999;
+    width: 100%;
+    float:left;
+    margin: 20px 0;
+}
+.loginform{
+    margin: 30px auto;
+}
+.loginform input[type=text], .loginform input[type=password]{
+    border: 1px solid #999;
+}
+#logininfobar{
+    border-bottom: 0px solid #ccc;
+    background: url('../images/loginbar.png');
+    padding: 5px;
+    color: #fff;
+    box-shadow: 0 0 4px #000;
+    position:fixed;
+    top: 0px;
+    left: 0px;
+    right:0px;
+    z-index: 1000;
+    z-index: 1000;
+}
+#logininfobar a{
+    color: #fff;
+}
+#logininfobar a:hover{
+    color: #D8EEFC;
+}
+#logininfobar>ul{
+    list-style-type: none;
+    padding: 0px;
+    margin:0px;
+    float:right;
+}
+#logininfobar li{
+    float: left;
+    padding: 5px 10px;
+}
+#notifs{
+    position: fixed;
+    display: none;
+    width: 300px;
+    margin: 20px;
+    margin-top: 5px;
+    background: #fff;
+    color: #000;
+    right: 0px;
+    top:33px;
+    border: 1px solid #999;
+    border-top: 4px solid #ddd;
+    box-shadow: 0px 0px 6px #999;
+}
+#notifs>div{
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    cursor: pointer;
+    position:relative;
+}
+#notifs>div a {
+    color: #000;
+}
+#notifs>div a:hover {
+    color: #666;
+}
+#notifs>div.unread{
+    background: #eee;
+}
+#notifs>div:hover{
+    background: #fafafa;
+}
+#notifs .timeautoupdate{
+    position:absolute;
+    bottom: 2px;
+    right: 5px;
+    font-family: arial;
+    font-size: 10px;
+    color: #666;
+}
+.student_nav{
+    margin:0px;
+    padding:10px 0;
+    background: #eee;
+}
+.student_nav li{
+    list-style-type: none;
+}
+.student_nav li a{
+    display: block;
+    padding:5px 10px;
+    font-size: 12px;
+}
+.student_nav li a.selected{
+    background: #ddd;
+}
+

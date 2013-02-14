@@ -1,0 +1,215 @@
+.class_box_new{
+    border: 1px solid #0059B2;
+    float: left;
+    position: relative;
+    margin: 4px;
+    width: 250px;
+    height: 128px;
+    font-family: "Segoe UI";
+}
+.class_box_new .cb_mainbox, .class_box_new .cb_overlay{
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: inherit;
+    height: inherit;
+}
+.class_box_new .cb_mainbox{
+    background: #ecf5ff;
+}
+.class_box_new .cb_overlay{
+    background: #0059B2 url('../images/class-icon.png') 213px 92px no-repeat;
+    z-index: 100;
+    color: #fff;
+}
+.class_box_new .cb_overlay .cb_left{
+    width: 200px;
+    float:left;
+}
+.class_box_new .cb_overlay .cb_right{
+    width: 50px;
+    float: right;
+}
+.class_box_new .cb_overlay .cb_classname{
+    font-size: 50px;
+    padding-left: 10px;
+    float: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:180px;
+    margin-top: -5px;
+    font-weight: lighter;
+}
+.class_box_new .cb_overlay .cb_classname sup{
+    font-size: 13px;
+    font-weight: normal;
+}
+.class_box_new .cb_overlay .cb_secname{
+    font-size: 13px;
+    float: left;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.class_box_new .cb_overlay .cb_secname span{
+    display: inline-block;
+    padding: 2px;
+}
+.class_box_new .cb_overlay .cb_notif{
+    height: 40px;
+}
+.class_box_new .cb_overlay .cb_notif span{
+    margin: 0px 5px 3px 15px;
+    display: block;
+    background: #91C8FF url('../images/cb_notif.png') 12px 5px no-repeat;
+    padding: 0px 15px 2px 25px;
+    color: #002448;
+}
+.class_box_new .cb_overlay .cb_status{
+    padding: 2px 15px;
+    font-size: 11px;
+}
+.class_box_new .cb_mainbox{
+    color: #00346C;
+}
+
+.class_box_new .cb_mainbox .cb_class{
+    color: #00346C;
+    font-size: 17px;
+    font-weight: bold;
+    padding: 5px 10px;
+}
+.class_box_new .cb_mainbox .cb_rollno{
+    color: #00346C;
+    font-size: 51px;
+    font-weight: lighter;
+    padding-left: 5px;
+    margin-top: -10px;
+    float: left;
+}
+.class_box_new .cb_mainbox .cb_options{
+    cursor: pointer;
+    position: absolute;
+    top: 3px;
+    right: 10px;
+}
+.class_box_new .cb_mainbox .cb_options ul{
+    display: none;
+    margin:0;
+    padding: 0;
+    list-style-type: none;
+    margin-left: -40px;
+    margin-top: -9px;
+    background: #00346C;
+}
+.class_box_new .cb_mainbox .cb_options li{
+    font-size: 12px;
+    font-weight: bold;
+}
+.class_box_new .cb_mainbox .cb_options li a{
+    text-decoration: none;
+    display: block;
+    padding: 0 5px;
+    color: #91C8FF;
+}
+.class_box_new .cb_mainbox .cb_options:hover ul{
+    display: block;
+}
+.class_box_new .cb_mainbox .cb_options ul li a:hover{
+    color: #fff;
+}
+.class_box_new .cb_mainbox .cb_options img{
+    padding: 3px;
+    border: 1px solid #ECF5FF;
+}
+.class_box_new .cb_mainbox .cb_options:hover img{
+    border: 1px solid #0059B2;
+    background: #91C8FF;
+}
+.class_box_new .cb_mainbox .cb_sections ul{
+    margin: 0;
+    margin-left: 20px;
+    margin-top: -15px;
+    max-height: 77px;
+    padding: 0;
+    list-style-type: none;
+    font-size: 50px;
+    font-weight: lighter;
+    overflow: auto;
+}
+.class_box_new .cb_mainbox .cb_sections ul li{
+    float: left;
+    padding: 0 5px;
+}
+.class_box_new .cb_mainbox .cb_sections ul li a{
+    text-decoration: none;
+    color: #00346C;
+}
+.class_box_new .cb_mainbox .cb_sections ul li a sup{
+    font-size: 13px;
+    font-weight: normal;
+}
+.class_box_new .cb_mainbox .cb_actions ul{
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+    list-style-type: none;
+    overflow: auto;
+}
+.class_box_new .cb_mainbox .cb_actions ul li{
+    float: left;
+    margin: 5px;
+}
+.class_box_new .cb_mainbox .cb_actions ul li a{
+    display: block;
+    padding: 2px 33px;
+    color: #fff;
+    font-size: 12px;
+    background: #00346C;
+    text-decoration: none;
+    font-weight: bold;
+}
+.class_box_new .cb_mainbox .cb_actions_student{
+    clear:both;
+}
+.class_box_new .cb_mainbox .cb_actions_student ul{
+    margin: 0;
+    margin-left: 10px;
+    padding: 0;
+    list-style-type: none;
+    overflow: auto;
+}
+.class_box_new .cb_mainbox .cb_actions_student ul li{
+    float: left;
+    margin: 5px;
+}
+.class_box_new .cb_mainbox .cb_actions_student ul li a{
+    display: block;
+    padding: 2px 5px;
+    color: #00346C;
+    font-size: 12px;
+    background: #C1DFFF;
+    text-decoration: none;
+    font-weight: bold;
+}
+.class_box_new .cb_help{
+    font-size: 11px;
+    font-weight: normal;
+    margin-top: -16px;
+    margin-left: 20px;
+    overflow: auto;
+    color: #00346C;
+}
+.class_box_new .cb_student_info{
+    padding-top: 5px;
+}
+.class_box_new .cb_name{
+    font-size: 17px;
+    font-weight: normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 25px;
+    padding-left: 10px;
+}
+.class_box_new .cb_name span{
+    font-size: 10px;
+}
