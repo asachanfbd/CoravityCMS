@@ -17,7 +17,6 @@ require_once("lib/library.php");
       }
        $nav = array(
              'dashboard'         =>      'Dashboard',
-             'enquiry'           =>      'Enquiries',
              'pages'             =>      'Pages',
              'profiles'          =>      'Profile',
              'error_explorer'    =>      'Error Explorer',
