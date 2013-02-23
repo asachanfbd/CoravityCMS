@@ -30,20 +30,23 @@
                $this->pass=$pass;
                $this->dbname=$dbname;
                //$this->dbconnect();
-               //no need to enable the above code as dbconnect() is called internally by every function
+               //no need to enable the above code as dbconnect() is called externally to check db status
         }
       
       /**
         * info: This function makes connection with the database and return the lock
         * 
         */
-      private function dbconnect(){
+      public function dbconnect(){
           static $sqlconn = FALSE; 
           global $profiler;
             //$profiler->add('Called dbconnect()');
             if(!$sqlconn){
                 $profiler->add('dbconnect() :: connection to mysqli()');
                 $sqlconn = new mysqli($this->host, $this->uname, $this->pass, $this->dbname);
+                if (mysqli_connect_error()) {
+                    return false;
+                }
                 $profiler->add('dbconnect() :: connection to mysqli(): Successful');
             }
             //$profiler->add('Returned from dbconnect()');

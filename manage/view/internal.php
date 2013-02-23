@@ -10,9 +10,7 @@
 <meta name="keywords" content="">
 <title>[#:@`pagetitle`]</title>
 <link rel="stylesheet" type="text/css" href="style/common.css">
-<link rel="stylesheet" type="text/css" href="style/home.css">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<script src="js/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="style/internal.css">
 </head>
 <body>
 <div id="maincontainer">
@@ -24,10 +22,10 @@
         </nav>
     </header>
     <aside>
-        Body Goes here
+        [#:@`mainbody`]
     </aside>
     <footer>
-        <span>&copy; Copyright 2013 Coravity Infotech. All Rights Reserved.</span> 
+        <span>&copy; Copyright 2013 Coravity Infotech</span> 
     </footer>
     </div>
 </div>

@@ -208,6 +208,38 @@
           return $r;
       }
       
+      function getfrontnav($name, $curpage = ''){
+            global $db;
+            $re1=$db->querydb("SELECT * FROM page_tree WHERE parent='".$name."' ORDER BY priority, name");
+            $list = '';
+            if($re1->num_rows){
+                while($ro1=$re1->fetch_object()){
+                    $q = "SELECT title FROM pages WHERE name='".$ro1->name."' ORDER BY added DESC";
+                    $r = $db->querydb($q, true);
+                    $sublist = $this->getfrontnav($ro1->name, $curpage);
+                    if($sublist != ""){
+                        $span = "<span></span>";
+                        $link = "#";
+                    }else{
+                        $span = "";
+                        $link = "?page=".$ro1->name;
+                    }
+                    $list .= '<li><a ';
+                    if($curpage == $ro1->name){
+                        $list .= 'class="selected" ';
+                    }
+                    $list .= 'href="'.$link.'">'.$r->title.$span.'</a>
+                      '.$sublist.'
+                      </li>';
+                
+                }
+            }
+            if($list == ""){
+                return "";
+            }
+            return "<ul>".$list."</ul>";
+      }
+      
       function getsubnav($pages, $type, $pageid, $subpage){
           global $user;
           $r = '<ul class="'.$type.'"  id="leftsubnav">';
@@ -226,10 +258,10 @@
       function htmlframe($data, $page = ''){
           global $user;
           if(!$user->iflogin()){
-              if($page == 'homepage'){
-                  $theme = 'home_frame.php';
+              if($page == 'home'){
+                  $theme = 'home.php';
               }else{
-                  $theme = 'frame_internal.php';
+                  $theme = 'internal.php';
               }
           }else{
               $theme = 'loginpage.php';

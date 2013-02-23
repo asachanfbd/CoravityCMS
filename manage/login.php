@@ -204,7 +204,7 @@
             }
         </style>
         <title>
-            Login - OTS | Braintouch Online
+            Login to Website Management Interface
         </title>
     </head>
 <body>
@@ -212,9 +212,7 @@
         <div class="login_body">
              <div class="login_body_form">
                  <div class="top_form">
-                    <div>
-                        <img id="logo" src="images/logo-name.png" width="100%" alt="Braintouch Technologies">
-                    </div> 
+                    Website Management Login
                  </div>
                  <div id="error" style="color: red; margin-top: 30px;">
                     <?php
@@ -242,18 +240,12 @@
                       <img src="images/ptmimg.png" >
                  </div>
                  <div class="main_container">
-                      <ul class="ots_link">
-                          <li><a href="http://www.braintouchonline.com/?page=about&type=mainnavigation">About Braintouch OTS</a></li>
-                          <li><a href="http://www.braintouchonline.com/?page=features&type=mainnavigation">New features!</a></li>
-                          <li><a href="http://www.braintouchonline.com/?page=services&type=mainnavigation">Scope of Services</a></li>
-                      </ul>
                 </div>
              </div>
         </div>
         <div id="footer_div">
             <div>
-                <div>Copyright&copy;  2012, Braintouch Technologies.</div>
-                <div style="float: right;">Powered By <a href="http://www.coravity.com" target="_blank">Coravity Infotech</a></div>       
+                <div>Copyright&copy;  2012, Coravity Infotech.</div>       
             </div>
         </div>
     </div>
