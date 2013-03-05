@@ -1,7 +1,7 @@
 <?php
 setcookie("man",uniqid(),time()+3600*24*365);
 require_once("manage/lib/library.php");
-
+/** this is test comment */
     $data=array();
     $page='';
     if(!$requireinstallations){
