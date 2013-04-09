@@ -1,5 +1,9 @@
 <?php
-require_once("lib/library.php");
+  require_once("lib/library.php");
+  if(!file_exists("config/dbconfig.php")){
+        header("Location: install.php");
+        exit();
+  }
   if(isset($_GET['logout']) && isset($_COOKIE['ls'])){
       $user->logout($_COOKIE['ls']);
       header("Location: index.php");
@@ -15,12 +19,13 @@ require_once("lib/library.php");
       }else{
           $subpage = 'dashboard';
       }
-       $nav = array(
+        $nav = array(
              'dashboard'         =>      'Dashboard',
+             'enquiry'           =>      'Enquiries',
              'pages'             =>      'Pages',
              'profiles'          =>      'Profile',
-             'error_explorer'    =>      'Error Explorer',
-             'usermanagment'     =>      'User Management'
+             'usermanagment'     =>      'Management',
+             'error_explorer'    =>      'Error Explorer'
           );
       
       if($subpage == 'profiles'){
@@ -36,12 +41,12 @@ require_once("lib/library.php");
       $profiler->add('Completed executing includes.php');
       $data['footer'] = '
       <div>
-      Copyright &copy; 2012 Coravity Infotech. 
+      Copyright &copy; 2012 Coravity Infotech.
       Powered by 
       <a href="http://www.coravity.com/" target="_blank">Coravity Infotech</a>
       </div>
       <!--<ul>
-        <li>For Support Call <b>+91-9873192063</b>&nbsp;&nbsp;&nbsp;</li>
+        <li>For Support Call <b>+91-9711758503</b>&nbsp;&nbsp;&nbsp;</li>
         <li><a href="http://www.coravity.com/?page=contact" target="_blank">Contact Us</a></li>
         <li><a href="http://www.coravity.com/?page=privacypolicy" target="_blank">Privacy Policy</a></li>
         <li><a href="http://www.coravity.com/?page=termsofuse" target="_blank">Terms of Use</a></li>

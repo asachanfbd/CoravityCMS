@@ -1,4 +1,9 @@
 <?php
+$REF='manage';
+if(!(file_exists($REF."/config/dbconfig.php") && file_exists($REF."/config/log.txt"))){
+    header("Location: ".$REF."/index.php");
+    exit();
+}
 setcookie("man",uniqid(),time()+3600*24*365);
 require_once("manage/lib/library.php");
 /** this is test comment */
