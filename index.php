@@ -5,7 +5,7 @@ if(!(file_exists($REF."/config/dbconfig.php") && file_exists($REF."/config/log.t
     exit();
 }
 setcookie("man",uniqid(),time()+3600*24*365);
-require_once("manage/lib/library.php");
+require_once("lib/library.php");
 /** this is test comment */
     $data=array();
     $page='';
@@ -34,7 +34,7 @@ require_once("manage/lib/library.php");
             $data['pagetitle']="Home Page Demo";
         }
         $data['footer']=$view->getnav($footer,'footernav',$page);
-        $data['mainnavigation']=$view->getfrontnav('root', $page);
+        $data['mainnavigation']=$view->getnavtree('root', $page);
         echo $view->htmlframe($data,$page);
     }else{
         $data = array('pagetitle' => 'Website Management Configuration Wizard', 'mainnavigation' => '', 'mainbody' => '', 'footer' => '');
