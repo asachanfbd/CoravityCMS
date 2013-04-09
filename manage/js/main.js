@@ -509,3 +509,9 @@ function uploadfile(form, action_url) {
                 //$("#panel3").slideUp("slow");
             }
         }
+        
+         $(document).ready(function() {
+      setTimeout(function(){ 
+          $('#fadeout').fadeOut('slow');
+      }, 3000);
+    });

@@ -191,7 +191,7 @@
                         'email'     =>  $email,
                         'password'  =>  $password
           );
-          $this->setpriviledge($val,$id);
+          $this->setprivilege($val,$id);
           $this->usermail($values);
           /**
           * mail login credentials to user.
@@ -209,9 +209,9 @@
           return true;
       }
       
-      public function getpriviledges(){
+      public function getprivileges(){
           global $db;
-          $re = $db->querydb("SELECT * FROM users_priviledge WHERE id = ".getid());
+          $re = $db->querydb("SELECT * FROM users_privilege WHERE id = ".getid());
           $r = array();
           if($re->num_rows){
               while($ro = $re->fetch_object){
@@ -294,10 +294,10 @@
       }
       
       public function contactformmail($value){
-          $to="manish12jes@gmail.com";
+          $to="admin@coravity.com";
           $msg=$value['msg'];
           $header="From".$value['email'];
-          $subject="Query regarding trouble in login on universal pride";
+          $subject="Query regarding trouble in login on demo interface";
           if(mail($to,$subject,$msg,$header)){
               return true;
           }
@@ -331,8 +331,8 @@
         $to = $values['email'];
         $temp = explode('.', $_SERVER['SERVER_NAME']);
         $hostname = $temp[count($temp) - 2] . '.' . $temp[count($temp) - 1];
-        $subject = 'Universal Pride Interiors Login Account Information';
-        $headers = "From: no-reply@universalprideinteriors.com\r\n";
+        $subject = 'Demo Interface Login Account Information';
+        $headers = "From: no-reply@coravity.com\r\n";
         $headers .= "MIME-Version: 1.0\r\n";
         $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
         $message = '<html><body>';
@@ -341,7 +341,7 @@
         $message .= "<tr><td><strong>Name:</strong> </td><td>" . $values['name'] . "</td></tr>";
         $message .= "<tr><td><strong>Email:</strong> </td><td>" . $values['email'] . "</td></tr>";
         $message .= "<tr><td><strong>Password:</strong> </td><td>" . $values['password'] . "</td></tr>";
-        $message .= "<tr><td><strong>Login Link:</strong> </td><td><a href='http://manage.universalprideinteriors.com//'>http://manage.universalprideinteriors.com/</a></td></tr>";
+        $message .= "<tr><td><strong>Login Link:</strong> </td><td><a href='http://demo.coravity.com//'>http://demo.coravity.com/</a></td></tr>";
         $message .= "</table>";
         $message .= "Please do not reply to this e-mail. For any queries contact <a href='mailto:info@coravity.com'>info@coravity.com</a>";
         $message .= "</body></html>";
@@ -403,14 +403,14 @@
             }
       }
       
-      public function setpriviledge($valar,$id){
+      public function setprivilege($valar,$id){
           global $db;
           $vls=implode(",",$valar);
           $array = array(
                 'id'    =>  $id,
                 'permissions'=>$vls
           );
-          $q = $db->insert('users_priviledge', $array);
+          $q = $db->insert('users_privilege', $array);
         
          return true;
       }
@@ -420,7 +420,7 @@
           if($id=='superadmin'){
               return true;
           }
-          $q="SELECT * from users_priviledge where id='".$id."'";
+          $q="SELECT * from users_privilege where id='".$id."'";
           $ro=$db->querydb($q);
           if($ro->num_rows){
               while($r=$ro->fetch_object()){

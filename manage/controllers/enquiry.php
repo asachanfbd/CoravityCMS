@@ -24,6 +24,10 @@
             }else{
                 $errorvar = 'Message not saved.';
             }
+            if($errorvar==''){
+                $success='alertnreload';
+                $result='Response Submitted';
+            }
         
         }
     }

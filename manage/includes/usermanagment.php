@@ -92,10 +92,13 @@ global $user;
                 </tr>
                 <tr>
                 <tr>
-                <td><input class="button" type="submit" value="save" name="saveuser" id="saveuser">
-                        </tr>
-                    </table>
-                    </div>
+                <td>
+                <input class="button" type="submit" value="Update" name="saveuser" id="saveuser">
+                <input class="button" type="button" value="Cancel" style="width:60px" onclick="location.replace(\'index.php\')">
+                </td>       
+                </tr>
+                </table>
+                </div>
                 </form>';
                          }
                           $body .= $view->getcmsbox('','Edit Profile', $data1, 'Click on the above settings to edit.',array('List User'=>"?subpage=".$_GET['subpage']));
@@ -120,11 +123,6 @@ global $user;
                         <td width="63px" colspan="3" class="smallfont">Dont share your password with anyone. Password must be atleast 6 characters. For password to be secure you must use alphanumeric password and some special characters.</td>
                     </tr>
                     <tr>
-                        <td  >Current Password</td>
-                        <td >:</td>
-                        <td ><input type="password" name="pas" id="pass" value=""></td>
-                    </tr>
-                    <tr>
                         <td >New Password</td>
                         <td >:</td>
                         <td ><input type="password" name="npass" id="npass" value=""></td>
@@ -147,31 +145,46 @@ global $user;
          
          else{
              if($user->haspermission('addedituser',$user->getid())){
-        $body .= $view->getcmsbox('','User Management', "<div id='userlist'>List of registered User</div><div class='tasklist'>".getuserlist()."</div>", 'View pages of website',array('Add New User'=>"?subpage=".$_GET['subpage']."&adduser")); 
+                if(getuserlist()==false){
+                $d="No relevant information found!";
+                }else{
+                $d="<div id='userlist'>List of registered Users</div><div class='tasklist'>".getuserlist()."</div>"; 
+                }
+                
+                $body .= $view->getcmsbox('','User Management', $d, 'View pages of website',array('Add New User'=>"?subpage=".$_GET['subpage']."&adduser")); 
         }else{
-             $body .= $view->getcmsbox('','User Management', "<div id='userlist'>List of registered User</div><div class='tasklist'>".getuserlist()."</div>", 'View pages of website'); 
+            if(getuserlist()==false){
+               $d="No relevant user information found!";
+            }else{
+               $d="<div id='userlist'>List of registered Users</div><div class='tasklist'>".getuserlist()."</div>"; 
+            }
+             
+            $body .= $view->getcmsbox('','User Management', $d , 'View pages of website'); 
         }
     }
     
-                function getuserlist($id=''){
+    function getuserlist($id=''){
         global $db,$user;
            $q="SELECT * from users_info";
            $ro=$db->querydb($q);
             if($ro->num_rows){
+                if($ro->num_rows==1){
+                            return false;
+                }
                 $val="";
                 $val.="<ul>";
                 while($r=$ro->fetch_object()){
                     $val.="<li>";
                      if($r->id!='superadmin'){
-                     if($user->getid()!=$r->id){
-                    $val.="<a>".$r->fname." ".$r->lname."</a>";
-                     if($user->haspermission('addedituser',$user->getid())){  
-                    $val.="<a class='button' href='?subpage=".$_REQUEST['subpage']."&editprofile=".$r->id."'>Edit</a>".
-                    "<a class='button' href='?subpage=".$_REQUEST['subpage']."&deleteuser=".$r->id."' onclick='return confirm(\"Are You Sure You Want To Delete This User? \");'>Delete</a>"."
-                    <a class='button' href='?subpage=".$_REQUEST['subpage']."&changepassword=".$r->id."'>Change Password</a></li>";
-                }
+                         if($user->getid()!=$r->id){
+                         $val.="<a>".$r->fname." ".$r->lname."</a>";
+                             if($user->haspermission('addedituser',$user->getid())){  
+                                $val.="<a class='button' href='?subpage=".$_REQUEST['subpage']."&editprofile=".$r->id."'>Edit</a>".
+                                "<a class='button' href='?subpage=".$_REQUEST['subpage']."&deleteuser=".$r->id."' onclick='return confirm(\"Are You Sure You Want To Delete This User? \");'>Delete</a>"."
+                                <a class='button' href='?subpage=".$_REQUEST['subpage']."&changepassword=".$r->id."'>Change Password</a></li>";
+                             }
+                         }
                      }
-                }
                 }
                 $val.="</ul>";
                 return $val;

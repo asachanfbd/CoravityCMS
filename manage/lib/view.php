@@ -208,38 +208,6 @@
           return $r;
       }
       
-      function getfrontnav($name, $curpage = ''){
-            global $db;
-            $re1=$db->querydb("SELECT * FROM page_tree WHERE parent='".$name."' ORDER BY priority, name");
-            $list = '';
-            if($re1->num_rows){
-                while($ro1=$re1->fetch_object()){
-                    $q = "SELECT title FROM pages WHERE name='".$ro1->name."' ORDER BY added DESC";
-                    $r = $db->querydb($q, true);
-                    $sublist = $this->getfrontnav($ro1->name, $curpage);
-                    if($sublist != ""){
-                        $span = "<span></span>";
-                        $link = "#";
-                    }else{
-                        $span = "";
-                        $link = "?page=".$ro1->name;
-                    }
-                    $list .= '<li><a ';
-                    if($curpage == $ro1->name){
-                        $list .= 'class="selected" ';
-                    }
-                    $list .= 'href="'.$link.'">'.$r->title.$span.'</a>
-                      '.$sublist.'
-                      </li>';
-                
-                }
-            }
-            if($list == ""){
-                return "";
-            }
-            return "<ul>".$list."</ul>";
-      }
-      
       function getsubnav($pages, $type, $pageid, $subpage){
           global $user;
           $r = '<ul class="'.$type.'"  id="leftsubnav">';
@@ -258,10 +226,10 @@
       function htmlframe($data, $page = ''){
           global $user;
           if(!$user->iflogin()){
-              if($page == 'home'){
-                  $theme = 'home.php';
+              if($page == 'homepage'){
+                  $theme = 'home_frame.php';
               }else{
-                  $theme = 'internal.php';
+                  $theme = 'frame_internal.php';
               }
           }else{
               $theme = 'loginpage.php';
@@ -684,23 +652,84 @@
           return $this->getcmsbox('Change Username', $d, 'You can set your email id as username. So that you can remember it easily.');
       }
       
+        /**
+      * This function will create a datatable with sorting searching and pagination method.
+      * 
+      * $data is an array as follows:
+      *     $data = array(
+      *                 array('Col Name 1', 'Col Name 2', 'Col Name 3'), 
+      *                 array('data 1 1', 'data 1 2', 'data 1 3'),
+      *                 array('data 2 1', 'data 2 2', 'data 2 3'),
+      *                 .
+      *                 .
+      *                 .
+      *                 array('data n 1', 'data n 2', 'data n 3')
+      *             );
+      *     Note: First element of array comtains coloumn names.
+      * @param mixed $data
+      */
+      
+      function createdatatable($data){
+          static $styles = 1;
+          $thead = '';
+          $tbody = '';
+          $flag = 1;
+          foreach($data as $th){
+              if($flag == 1){
+                  $thead .= '<tr>';
+              }else{
+                  $tbody .= '<tr>';
+              }
+              foreach($th as $td){
+                  if($flag == 1){
+                      $thead .= '<th>'.$td.'</th>';
+                  }else{
+                      $tbody .= '<td>'.$td.'</td>';
+                  }
+                  
+              }
+              if($flag == 1){
+                  $thead .= '</tr>';
+                  $flag = 0;
+              }else{
+                  $tbody .= '</tr>';
+              }
+          }
+          $d = '
+                <div style="overflow:auto; padding: 10px;">
+                    <table class="datatables display" width="100%">
+                        <thead>'.$thead.'</thead>
+                        <tbody>'.$tbody.'</tbody>
+                        <tfoot>'.$thead.'</tfoot>
+                    </table>
+                </div>
+          ';
+          if($styles== 1){
+              $d = '
+            <style type="text/css" title="currentStyle">
+                @import "js/media/css/demo_page.css";
+                @import "js/media/css/demo_table_jui.css";
+            </style>'.$d;
+            $styles=0;
+          }
+          return $d;
+      }
+      
       function highlightsuccess($msg=''){
-        return '<div class="ui-widget">
+        return '<div style="font-size:14px; font-weight: bold" id="fadeout"><div class="ui-widget">
         <div class="ui-state-highlight ui-corner-all" style="margin-top: 20px; padding: 0 .7em;">
         <p><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
         <strong>Success!</strong> '.$msg.'</p>
         </div>
-        </div>';
+        </div></div>';
       }
       function highlighterror($msg=''){
-        return '<div class="ui-widget">
+        return '<div style="font-size:14px; font-weight: bold" id="fadeout"><div class="ui-widget">
         <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
         <p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
         <strong>Alert:</strong> '.$msg.'</p>
         </div>
-        </div>';
+        </div></div>';
       }
-
-
   }
 ?>

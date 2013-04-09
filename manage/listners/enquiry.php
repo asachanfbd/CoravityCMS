@@ -14,15 +14,14 @@
                                 if($re){
                                     echo "<tr><td>Email</td><td>:</td><td>".$re->email."</td></tr>";
                                     echo "<tr><td>Phone</td><td>:</td><td>".$re->phone."</td></tr>";
-                                    echo "<tr><td>Service</td><td>:</td><td>".$re->service."</td></tr>";
+                                    echo "<tr><td>Address</td><td>:</td><td>".$re->address."</td></tr>";
+                                    echo "<tr><td>Service</td><td>:</td><td>".$re->selcetservices."</td></tr>";
                                     echo "<tr><td>Message</td><td>:</td><td>".$re->message."</td></tr>";
                                 }
                             ?>
                             </table>
                         </td>
-                        <td valign="top">
-                            <input type="button" value="Delete" onclick="deleteenquiry(this, '<?php echo $_GET['pagename']; ?>')">
-                        </td>
+                        
                     </tr>
                     <tr>
                         <td colspan="2" class="smallfont"><br>Enquiry Follow ups:</td>

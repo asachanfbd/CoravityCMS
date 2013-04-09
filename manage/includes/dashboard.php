@@ -1,10 +1,21 @@
 <?php 
 if($user->haspermission('addpage',$user->getid())){
-$body .= $view->getcmsbox('historypage','Recently Added Pages', "<div class='tasklistdashbord'>".getpageshistory()."</div>", 'View pages of website',array('Add New Page'=>"?subpage=pages&addpage"));
+    if(getpageshistory()==false){
+        $d='';
+    }else{
+        $d='Recently Added Pages';
+    }
+    $add=array('Add New Page'=>"?subpage=pages&addpage");
+    $body .= $view->getcmsbox('historypage', $d, "<div class='tasklistdashbord'>".getpageshistory()."</div>", 'View pages of website', $add);
 }else{
-    $body .= $view->getcmsbox('historypage','Recently Added Pages', "<div class='tasklistdashbord'>".getpageshistory()."</div>", 'View pages of website');
+    if(getpageshistory()==false){
+        $d='';
+    }else{
+        $d='Recently Added Pages';
+    }
+    $body .= $view->getcmsbox('historypage', $d, "<div class='tasklistdashbord'>".getpageshistory()."</div>", 'View pages of website');
 }
-
+//$body .= $profiler->display();
 function getpageshistory(){
         global $db,$contentpages,$user;
         $q="SELECT * from page_tree ORDER by added DESC limit 10";
@@ -18,7 +29,7 @@ function getpageshistory(){
             $val.='</ul>';
             return $val;
         }else{
-        return '';
+        return false;
         }
     }
     ?>

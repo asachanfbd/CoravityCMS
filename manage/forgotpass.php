@@ -2,69 +2,36 @@
   require_once('lib/library.php');
   if(isset($_REQUEST['radiofp'])){
       $value=$_REQUEST['radiofp'];
-      if($value=='username'){
-          $username=$_REQUEST['username'];
-          if($username!=''){
-               global $db;
-               if( $re = $db->querydb("SELECT * FROM bt_login WHERE username = '".$username."'", true)){
-                    $notify->send($re->id, 'logininfo', array('sender' => 'Braintouch OTS Team'));
-                    header("Location: forgotpass.php?user_details_sent");
-               }else{
-                    header("Location: forgotpass.php?invalid_username&value=$username");
-               }
-          }else{
-              header("Location: forgotpass.php?invalid_username");
-          }
-      }
       if($value=='email'){
           $email=$_REQUEST['email'];
           if(validatemail($email)){
               global $db;
-                $re = $db->querydb("SELECT * FROM bt_par_info WHERE email = '".$email."'");
-                if($re->num_rows!=0){
-                    while($ro=$re->fetch_object()){
-                    $notify->send($re->id, 'logininfo', array('sender' => 'Braintouch OTS Team'));
-                    }
+                $re = $db->querydb("SELECT * FROM users_email WHERE email = '".$email."'", true);
+                if($re){
+                    //code pending
                     header("Location: forgotpass.php?user_details_sent");
                 }else{
-                    $q = $db->querydb("SELECT * FROM bt_inst_info WHERE email = '".$email."'");
-                    if($q->num_rows!=0){
-                          while($r=$q->fetch_object()){
-                          $notify->send($r->id, 'logininfo', array('sender' => 'Braintouch OTS Team'));
-                          }  
-                          header("Location: forgotpass.php?user_details_sent");
-                    }else{  
-                        header("Location: forgotpass.php?email_id_not_registered&value=$email");
+                        header("Location: forgotpass.php?email_id_not_registered&value=".$email.'"');
                     }     
                }   
           }else{
               header("Location: forgotpass.php?invalid_email_id");
           }
-      }
-      if($value=='mobile'){
+  }
+  if($value=='mobile'){
           $mobile=$_POST['mobile'];
           $flag=true;
           if($mobile!=''){
               if(ctype_digit($mobile)){
                   if(strlen($mobile)==10){
                       global $db;
-                      $re = $db->querydb("SELECT * FROM bt_par_info WHERE mobile = '".$mobile."'");
-                      if($re->num_rows!=0){
-                        while($ro=$re->fetch_object()){
-                            $notify->send($re->id, 'logininfo', array('sender' => 'Braintouch OTS Team'));
-                        }
+                      $re = $db->querydb("SELECT * FROM users_info WHERE mobile = '".$mobile."'", true);
+                      if($re){
+                      //code pending
                         header("Location: forgotpass.php?user_details_sent");
-                      }else{
-                        $q = $db->querydb("SELECT * FROM bt_inst_info WHERE mobile = '".$mobile."'");
-                        if($q->num_rows!=0){
-                          while($r=$q->fetch_object()){
-                          $notify->send($r->id, 'logininfo', array('sender' => 'Braintouch OTS Team'));
-                          }  
-                          header("Location: forgotpass.php?user_details_sent");
-                        }else{  
-                        header("Location: forgotpass.php?mobile_number_not_registered&value=$mobile");
-                        }     
-                      }
+                      }else{ 
+                        header("Location: forgotpass.php?mobile_number_not_registered&value=".$mobile.'"');
+                      }     
                   }else{
                       $flag=false;
                   }
@@ -81,13 +48,14 @@
       if($value=='other'){
           $mobile=false;
           $email=false;
-          $pn=$_REQUEST['parent_name']; $pe=$_REQUEST['parent_email']; $pm=$_REQUEST['parent_mobile'];
-          $sn=$_REQUEST['student_name']; $ns=$_REQUEST['school']; $sc=$_REQUEST['class']; $ss=$_REQUEST['section']; $sr=$_REQUEST['roll_number'];
-          $msg=$_REQUEST['msg'];
-          $string='&pn='.$pn.'&pe='.$pe.'&pm='.$pm.'&sn='.$sn.'&ns='.$ns.'&sc='.$sc.'&ss='.$ss.'&sr='.$sr.'&msg='.$msg;
-          if($pn!='' && $pm!='' && $sn!='' && $ns!='' && $sc!='' && $sr!=''){
-              if($pe){
-                  if(validatemail($pe)){
+          
+          $un=$_REQUEST['user_name']; $ue=$_REQUEST['user_email']; $um=$_REQUEST['user_mobile'];
+          $umsg=$_REQUEST['user_message'];
+          
+          $string='&un='.$un.'&ue='.$ue.'&um='.$um.'&umsg='.$umsg;
+          if($un!='' && $ue!='' && $um!='' && $umsg!=''){
+              if($ue){
+                  if(validatemail($ue)){
                       $email=true;
                   }else{
                       $email=false;
@@ -96,8 +64,8 @@
                   $email=true;
               }
               if($email==true){
-              if(ctype_digit($pm)){
-                  if(strlen($pm)==10){
+              if(ctype_digit($um)){
+                  if(strlen($um)==10){
                       $mobile=true;
                   }else{
                       $mobile=false;
@@ -170,7 +138,6 @@
           else{
           header("Location: forgotpass.php?invalid_field_values".$string);
           }
-      }
   }
 
   if(isset($_REQUEST['form_submitted'])){
@@ -187,7 +154,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Password Help - OTS | Braintouch Online</title>
+        <title>Password Help - CMS | Coravity Infotech</title>
         <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <script type="text/javascript" src="js/jquery.min.js"></script>
@@ -448,6 +415,24 @@
                      color:#555;
                      font-size: 11px;
                 }
+                .cms_footer_nav{
+                margin: 0; 
+                padding: 0; 
+                overflow: auto; 
+                list-style-type: none;   
+            }
+            .cms_footer_nav li{
+                float:left;
+                padding: 2px;
+            }
+            .cms_footer_nav li a{
+                color: #51bcea;
+                text-decoration: none;
+            }
+            .cms_footer_nav li a:hover{
+                text-decoration: underline;
+                color: #8080FF;
+            }
                
         </style>
     </head>
@@ -457,7 +442,7 @@
              <div class="login_body_form">
                  <div class="top_form" style="margin-bottom: 50px; margin-left: -15px;">
                     <div>
-                        <a href="index.php"><img id="logo" src="images/logo-name.png" width="100%" alt="Braintouch Technologies"></a>
+                        <a href="index.php"><img id="logo" src="images/logo-name.png" width="100%" alt="Coravity Infotech"></a>
                     </div> 
                  </div>
 <?php
@@ -549,46 +534,25 @@ if((count($_REQUEST)==0)||((!isset($_REQUEST['user_details_sent']))&&(!isset($_R
 <div id="panel4" class="flip"> 
         <div>Please Fill this form to complete password recovery process:</div>
         <table style="font-size: 13px; color: #333; padding: 5px;">
-        <tr>
+        <tr colspan="2">
         <td>
-        <div style="padding-bottom: 5px;">Parent's Name:*</div>
-                     <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pn'];}?>" maxlength="30" name="parent_name" placeholder="Father's Name"/></br>
+        <div style="padding-bottom: 5px;">Your Name:*</div>
+                     <input type="text" value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pn'];}?>" maxlength="30" name="parent_name" placeholder="Father's Name"/></br>
         </td>
+        </tr>
+        <tr colspan="2">
         <td>
         <div style="padding-bottom: 5px;">Email ID:</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pe'];}?>" maxlength="50" name="parent_email" placeholder=""/></br>
+                <input type="text" value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pe'];}?>" maxlength="50" name="parent_email" placeholder=""/></br>
         </td>
         </tr>
         <tr>
-        <td>
+        <td colspan="2">
         <div style="padding-bottom: 5px;">Mobile No.:*</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pm'];}?>" name="parent_mobile" maxlength="10" placeholder=""/></br>
-        </td>
-        <td>
-        <div style="padding-bottom: 5px;">Student's Name:*</div>
-                     <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['sn'];}?>" maxlength="30" name="student_name" placeholder=""/></br>
+                <input type="text" value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['pm'];}?>" name="parent_mobile" maxlength="10" placeholder=""/></br>
         </td>
         </tr>
-        <tr>
-        <td>
-        <div style="padding-bottom: 5px;">Name of School:*</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['ns'];}?>" name="school" maxlength="10" placeholder=""/></br>
-        </td>
-        <td>
-        <div style="padding-bottom: 5px;">Class:*</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['sc'];}?>" maxlength="50" name="class" placeholder=""/></br>
-        </td>
-        </tr>
-        <tr>
-        <td>
-        <div style="padding-bottom: 5px;">Section:</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['ss'];}?>" name="section" maxlength="10" placeholder=""/></br>
-        </td>
-        <td>
-        <div style="padding-bottom: 5px;">Roll Number:*</div>
-                <input type=text value="<?php if(isset($_REQUEST['invalid_field_values'])){echo $_REQUEST['sr'];}?>" name="roll_number" maxlength="10" placeholder=""/></br>
-        </td>
-        </tr>
+        
         <tr>
         <td colspan="2">
         <div style="padding-bottom: 7px;">Other description:</div>
@@ -624,8 +588,14 @@ if((count($_REQUEST)==0)||((!isset($_REQUEST['user_details_sent']))&&(!isset($_R
         </div>
         <div id="footer_div">
             <div>
-                <div>Copyright&copy;  2012, Braintouch Technologies.</div>
-                <div style="float: right;">Powered By <a href="http://www.coravity.com" target="_blank">Coravity Infotech</a></div>       
+                <div>Copyright&copy;  2012, <a href="http://www.coravity.com" target="_blank">Coravity Infotech.</a></div>
+                <div style="float: right;">
+                    <ul class="cms_footer_nav">
+                    <li><a href="http://www.coravity.com" target="_blank">Contact Us</a></li><li>|</li>
+                    <li><a href="http://www.coravity.com" target="_blank">Support</a></li><li>|</li>
+                    <li><a href="http://www.coravity.com" target="_blank">Privacy Policy</a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>

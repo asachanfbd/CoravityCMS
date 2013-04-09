@@ -32,13 +32,14 @@ class stats{
                     //  $this->visitordb();
                     $flag=false;
                     if(isset($_COOKIE['bid'])){
+                        $flag = true;
                         if($db->checktable('raw_stats')){    
                             $q = $db->querydb("SELECT * FROM raw_stats WHERE BROWSER_ID='".$_COOKIE['bid']."'", true);
-                        }
-                        if($q){
-                            $flag = false;
-                        }else{
-                            $flag=true;
+                            if($q){
+                                $flag = false;
+                            }else{
+                                $flag=true;
+                            }
                         }
                     }else{
                         $flag = true;

@@ -202,9 +202,27 @@
                 border: 1px solid #3792EC;
                 background: #F3FAFE;
             }
+            .cms_footer_nav{
+                margin: 0; 
+                padding: 0; 
+                overflow: auto; 
+                list-style-type: none;   
+            }
+            .cms_footer_nav li{
+                float:left;
+                padding: 2px;
+            }
+            .cms_footer_nav li a{
+                color: #51bcea;
+                text-decoration: none;
+            }
+            .cms_footer_nav li a:hover{
+                text-decoration: underline;
+                color: #8080FF;
+            }
         </style>
         <title>
-            Login to Website Management Interface
+            Login - CMS | Coravity Infotech
         </title>
     </head>
 <body>
@@ -212,7 +230,10 @@
         <div class="login_body">
              <div class="login_body_form">
                  <div class="top_form">
-                    Website Management Login
+                    <div>
+                        <!--<img id="logo" src="images/logo-name.png" width="100%" alt="Coravity CMS">-->
+                        <h2 style="color: #51bcea;">Website Admin Panel</h2>
+                    </div> 
                  </div>
                  <div id="error" style="color: red; margin-top: 30px;">
                     <?php
@@ -237,15 +258,27 @@
              </div>
              <div class="login_body_info">
                  <div class="info">
-                      <img src="images/ptmimg.png" >
+                      <img src="images/cms.png" >
                  </div>
                  <div class="main_container">
+                      <ul class="ots_link">
+                          <li><a href="http://www.coravity.com/?page=about&type=mainnavigation">About Coravity CMS</a></li>
+                          <li><a href="http://www.coravity.com/?page=features&type=mainnavigation">New features!</a></li>
+                          <li><a href="http://www.coravity.com/?page=services&type=mainnavigation">Scope of Services</a></li>
+                      </ul>
                 </div>
              </div>
         </div>
         <div id="footer_div">
             <div>
-                <div>Copyright&copy;  2012, Coravity Infotech.</div>       
+                <div>Copyright&copy;  2012, <a href="http://www.coravity.com" target="_blank">Coravity Infotech.</a></div>
+                <div style="float: right;">
+                    <ul class="cms_footer_nav">
+                    <li><a href="http://www.coravity.com" target="_blank">Contact Us</a></li><li>|</li>
+                    <li><a href="http://www.coravity.com" target="_blank">Support</a></li><li>|</li>
+                    <li><a href="http://www.coravity.com" target="_blank">Privacy Policy</a></li>
+                    </ul>
+                </div>       
             </div>
         </div>
     </div>

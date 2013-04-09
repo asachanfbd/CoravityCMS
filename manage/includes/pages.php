@@ -117,7 +117,7 @@ elseif(isset($_REQUEST['editpage'])){
                     </tr>
                    
                     <tr>
-                        <td colspan="3"><input class="button" type="submit" value="Save" name="fullnamesubmitb" id="fullnamesubmitb">
+                        <td colspan="3"><input class="button" type="submit" value="Update" name="fullnamesubmitb" id="fullnamesubmitb">
                        
                     </tr>
                 </table>
@@ -211,6 +211,7 @@ $body .= $view->getcmsbox('','Pages', "<div class='tasklist'>".$dp.getpageslist(
     
     function getselectlist($id=''){
         global $db,$contentpages;
+        $data1='';
          $rw=$db->querydb("select distinct(`name`) from page_tree WHERE parent <> '".$_REQUEST['editpage']."' AND parent='".$id."' ORDER by priority ");
                                 if($rw->num_rows){
                                     while($r=$rw->fetch_object()){

@@ -24,12 +24,12 @@ class error{
     function report($e_number='', $e_message='', $e_file='', $e_line='', $e_vars=''){
         $e_id= uniqid();
         $values= array(
-            'ERRORID'   => $e_id,
-            'ERRORNO'   => $e_number,
-            'ERRORFILE' => $e_file,
-            'ERRORLINE' => $e_line,
-            'ERRORMSG'  => $e_message,
-            'ERRORVARS' => print_r($e_vars, TRUE)
+            'error_id'   => $e_id,
+            'error_no'   => $e_number,
+            'error_file' => $e_file,
+            'error_line' => $e_line,
+            'error_msg'  => $e_message,
+            'error_vars' => print_r($e_vars, TRUE)
         );
         /**
         * this call is made to save errors into database table or if it is not present the values will be written into a file

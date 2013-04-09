@@ -1,6 +1,12 @@
 <?php
   class pages{
       
+      function __construct(){
+          global $db;
+          $db->checktable('page_tree');
+          $db->checktable('pages');
+      }
+      
       static $page = '';
       
       static $name = '';
