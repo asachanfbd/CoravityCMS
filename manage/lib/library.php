@@ -20,42 +20,33 @@
   require_once('commonfunctions.php');
   require_once("user.php");
   require_once("dashboard.php");
-  require_once("enquiry.php");
   
   /*PHP file inclusion contains table name with structures*/
   require_once('mysql.php');
-  $requireinstallations = false;
-  $profiler=new profiler(FALSE);
 
-  $host=''; /*host name*/
-  $uname=''; /*user name*/
-  $pass=''; /*password*/
-  $dbname=''; /*database name*/  
-  
-  if((stristr($_SERVER['HTTP_HOST'], 'localhost'))){
-      /*in case the database is located on the localhost*/
-      $dbname='demogit1';
-      $db=new db($dbname);
-  }
-  else{
-      $db=new db($dbname, $host, $uname, $pass);/*initialization in case of server is not on localhost*/
-  }
-  
-  /**
-  * Checking for installation status. If database got connected it means installation is already done.
-  */
-  error_reporting(E_ERROR | E_PARSE);
-  if(!$db->dbconnect()){
-      $requireinstallations = true;
+  $profiler=new profiler(FALSE);
+  if(file_exists("config/dbconfig.php")){
+      $conf=getdbconfig();
   }else{
-      $stats=new stats();
+      header("Location: install.php");
+      exit();
   }
-  error_reporting(E_ALL);
+  
+ 
+  $host=$conf['hostname']; /*host name*/
+  $uname=$conf['username']; /*user name*/
+  $pass=$conf['password']; /*password*/
+  $dbname=$conf['database']; /*database name*/  
+  
+
+  $db=new db($dbname, $host, $uname, $pass);/*initialization in case of server is not on localhost*/
   
   /*Object Instantiation for classes*/
   $error=new error();
-  set_error_handler(array($error, 'report'));
   $user=new user();
+  //$newsupdates=new newsupdates();
+  set_error_handler(array($error, 'report'));
   $contentpages=new pages();
+  $stats=new stats();
   $view=new view();
 ?>
