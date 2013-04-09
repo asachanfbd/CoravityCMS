@@ -1,0 +1,121 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    color: #000;
+    font-family: "Segoe UI";
+}
+.wrapper{
+    overflow: auto;
+}
+header{
+    height: 50px;
+    background: #0059B2;
+    position: fixed;
+    left:0;
+    top: 0;
+    right: 0;
+}
+header .logo{
+    color: #fff;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 18px; 
+}
+
+.container{
+    overflow: auto;
+}
+.container .content{
+    position: fixed;
+    left: 200px;
+    bottom: 30px;
+    top: 50px;
+    right: 0px;
+    overflow: auto;
+}
+.container .content_left{
+    width: 200px;
+    background: #ccc;
+    position: fixed;
+    left: 0px;
+    bottom: 30px;
+    top: 50px;
+}
+.container .content_left ul{
+    padding: 0;
+    margin: 0;
+    padding-top:10px;
+}
+.container .content_left ul li.selected{
+    font-weight: bold;
+}
+.container .content_left ul li{
+    padding: 5px 0px 0px 30px;
+}
+
+.container .content_right_top{
+    height: 50px;
+}
+.container .content_right_top>div{
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+}
+.container .content_right_bottom{
+    
+}
+.container .content_right_bottom>div{
+    padding: 10px;
+}
+footer{
+    height: 30px;
+    background: #0059B2;
+    position: fixed;
+    left:0;
+    bottom: 0;
+    right: 0;
+}
+footer ul{
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+footer ul li{
+    list-style-type: none;
+    margin: 0;
+    float:left;
+    padding: 5px;
+    padding-top: 7px;
+    color: #fff;
+}
+footer ul li a{
+   text-decoration: none;
+   color: #fff;
+}
+footer ul li a:hover{
+   text-decoration: underline;
+}
+#textar{
+    max-width: 850px;
+    max-height:400px;
+}
+.button{
+    min-width: 80px;
+    min-height: 30px;
+    background: #0059B2;
+    color: #fff;
+    border: 0px;
+    cursor: pointer;
+    padding: 5px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.disable{
+    background: #aaa;
+}
+.green{
+    color: green;
+}
+.red{
+    color: red;
+}
